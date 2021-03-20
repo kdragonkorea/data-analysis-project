@@ -19,7 +19,7 @@ insta_email$sendKeysToElement(list('kdragonkorea@gmail.com'))
 
 insta_pw <- remDr$findElement(using='css selector','div:nth-child(2) > div > label')
 insta_pw$clickElement()
-insta_pw$sendKeysToElement(list('kdragontestr'))
+insta_pw$sendKeysToElement(list('kdragontestrr'))
 login_btn <- remDr$findElement(using='css selector','div:nth-child(3) > button')
 login_btn$clickElement()
 Sys.sleep(2)
@@ -35,20 +35,6 @@ tag1 <- remDr$findElement(using='css selector','div._8MQSO.Cx7Bp > div > div > d
 tag1$clickElement()
 Sys.sleep(2)
 
-# 스크롤 연습______________________________________________________
-for (i in 1:40){
-  index_row <- paste0('div:nth-child(',i,') > div:nth-child(1)> a > div > div._9AhH0')
-  post <- remDr$findElement(using='css selector',index_row)
-  print(index_row)
-  if (i %% 8 == 0){
-    scroll <- remDr$findElement("css selector", "body")
-    remDr$executeScript("scrollTo(0, document.body.scrollHeight)", args = list(scroll))
-    Sys.sleep(2)
-  }
-}
-
-# ______________________________________________________
-
 
 id <- NULL;txt <- NULL;date <- NULL;like <- NULL;reply <- NULL;reply_css <- NULL;like_css <- NULL;like_text <- NULL;video <- NULL;video_css <- NULL;index_col <- NULL;index_row <- NULL;index <- NULL;index_reply <- 2;reply_nums <- NULL
 # 최근 게시물
@@ -62,12 +48,12 @@ for (index_col in 0:38) {
     post$clickElement()
     Sys.sleep(1)
     
-  #1행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(1) > a > div > div._9AhH0
-  #1행2열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(2) > a > div > div._9AhH0
-  #1행3열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(3) > a > div.eLAPa > div._9AhH0
-  #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(1) > a > div.eLAPa > div._9AhH0
-  #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(2) > a > div > div._9AhH0
-  #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(3) > a > div.eLAPa > div._9AhH0
+    #1행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(1) > a > div > div._9AhH0
+    #1행2열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(2) > a > div > div._9AhH0
+    #1행3열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(1) > div:nth-child(3) > a > div.eLAPa > div._9AhH0
+    #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(1) > a > div.eLAPa > div._9AhH0
+    #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(2) > a > div > div._9AhH0
+    #2행1열: #react-root > section > main > article > div:nth-child(3) > div > div:nth-child(2) > div:nth-child(3) > a > div.eLAPa > div._9AhH0
     
     # id
     id_css <- remDr$findElement(using='css selector','div.e1e1d > span > a')
@@ -85,7 +71,7 @@ for (index_col in 0:38) {
       cat("(is txt) ")
       txt <- c(txt, unlist(txt_text))
     }
-
+    
     # date
     date_css <- remDr$findElements(using='css selector','div.C4VMK > div > div > time')
     date_text <- sapply(date_css, function(x) {x$getElementAttribute("title")})
@@ -113,7 +99,7 @@ for (index_col in 0:38) {
     
     # video (비디오일 경우 '좋아요' 대신에 '조회수'를 리턴)
     video_css <- remDr$findElements(using='css selector','div.eo2As > section.EDfFK.ygqzn > div > span')
-
+    
     if (length(video_css) == '0'){
       cat("(no video) ")
       video_NA <- NA
@@ -137,8 +123,8 @@ for (index_col in 0:38) {
       reply_text <- NA
       reply <- c(reply, unlist(reply_text))
     }else{
-    
-    # reply가 있으면 상위 1개의 reply만 가져온다.
+      
+      # reply가 있으면 상위 1개의 reply만 가져온다.
       cat("(is reply) ")
       index_reply2 <- paste0('ul:nth-child(',index_reply,') > div > li > div > div.C7I1f > div.C4VMK > span')
       reply_css <- remDr$findElements(using='css selector',index_reply2)
@@ -191,7 +177,4 @@ for (index_col in 0:38) {
   }
 }
 
-View(제주도맛집)
-write.csv(제주도맛집, "output/제주도맛집(instagram).csv")
-
-
+제주도맛집 <- data.frame(id, txt, date, like, video, reply, re_reply)
