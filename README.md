@@ -66,7 +66,7 @@
 
 #### 기타
 
-- 발표자료 자세히 보기
+- 발표자료 [자세히 보기](https://github.com/kdragonkorea/data-analysis-project/blob/master/ppt/%EB%AF%B8%EB%8B%88%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_2%EC%A1%B0.pdf)
 - 웹크롤링 소스(R) 자세히 보기
 - 웹크롤링 시행착오 메모 자세히 보기
 - 데이터 전처리 소스(R) 자세히 보기
